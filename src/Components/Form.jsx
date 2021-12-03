@@ -31,29 +31,33 @@ const Form = () => {
     }
     localStorage.setItem("token", "abc");
     navigate("/ExamPortal");
-    window.location.reload();
   };
   return (
-    <form onChange={handleChange} onSubmit={handleSubmit}>
+    <form onChange={handleChange} onSubmit={handleSubmit} className="form">
+      <h1>Welcome</h1>
+      <p>Please enter your details</p>
       <input
         type="text"
         placeholder="Enter your Name "
         name="username"
         value={formData.username}
+        className="form-input"
       />
       <input
         type="email"
         placeholder="Enter your Email "
         name="email"
         value={formData.email}
+        className="form-input"
       />
       <input
         type="date"
         placeholder="Enter your DOB "
         name="date"
         value={formData.date}
+        className="form-input"
       />
-      <button type="submit"> Submit Form</button>
+      <button type="submit">Submit Form</button>
       <ToastContainer />
     </form>
   );
