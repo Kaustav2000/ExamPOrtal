@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import ExamPortal from "./Components/ExamPortal";
+import Form from "./Components/Form";
+import PrivateRoute from "./Components/PrivateRoute";
+import { GlobalProvider } from "./Context/GlobalState";
 
 function App() {
+  useEffect(() => {
+    localStorage.setItem("token", "");
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <GlobalProvider>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Form />} />
+          <Route exact path="/ExamPortal" element={<ExamPortal />} />
+
+          {/* <PrivateRoute path="/ExamPortal" component={ExamPortal} /> */}
+        </Routes>
+      </Router>
+    </GlobalProvider>
   );
 }
 
